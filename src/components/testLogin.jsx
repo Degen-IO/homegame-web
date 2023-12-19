@@ -1,12 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
-import {
-  MDBContainer,
-  MDBInput,
-  MDBCheckbox,
-  MDBBtn,
-  MDBIcon,
-} from "mdb-react-ui-kit";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
@@ -55,82 +53,37 @@ function TestLogin() {
   };
   return (
     <>
-      <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-        <input
-          type="email"
-          name="email"
-          value={formState.email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          value={formState.password}
-          onChange={handleChange}
-        />
+      <Container className="p-3 my-5 d-flex flex-column w-50">
+        <Col>
+          <Row>
+            <Form.Control
+              type="email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+              placeholder="Enter email"
+            />
+          </Row>
+          <Row>
+            <Form.Control
+              type="password"
+              name="password"
+              value={formState.password}
+              onChange={handleChange}
+              placeholder="Enter password"
+            />
+          </Row>
+        </Col>
 
         <div className="d-flex justify-content-between mx-3 mb-4">
-          <MDBCheckbox
-            name="flexCheck"
-            value=""
-            id="flexCheckDefault"
-            label="Remember me"
-          />
+          <Form.Check type="checkbox" label="Check me out" />
           <a href="!#">Forgot password?</a>
         </div>
 
-        <MDBBtn onClick={handleFormSubmit} className="mb-4">
+        <Button onClick={handleFormSubmit} className="mb-4">
           Sign in
-        </MDBBtn>
-
-        <div className="text-center">
-          <p>
-            Not a member? <a href="#!">Register</a>
-          </p>
-          <p>or sign up with:</p>
-
-          <div
-            className="d-flex justify-content-between mx-auto"
-            style={{ width: "40%" }}
-          >
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="m-1"
-              style={{ color: "#1266f1" }}
-            >
-              <MDBIcon fab icon="facebook-f" size="sm" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="m-1"
-              style={{ color: "#1266f1" }}
-            >
-              <MDBIcon fab icon="twitter" size="sm" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="m-1"
-              style={{ color: "#1266f1" }}
-            >
-              <MDBIcon fab icon="google" size="sm" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="m-1"
-              style={{ color: "#1266f1" }}
-            >
-              <MDBIcon fab icon="github" size="sm" />
-            </MDBBtn>
-          </div>
-        </div>
-      </MDBContainer>
+        </Button>
+      </Container>
     </>
   );
 }
