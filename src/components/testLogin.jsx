@@ -53,36 +53,45 @@ function TestLogin() {
   };
   return (
     <>
-      <Container className="p-3 my-5 d-flex flex-column w-50">
-        <Col>
-          <Row>
-            <Form.Control
-              type="email"
-              name="email"
-              value={formState.email}
-              onChange={handleChange}
-              placeholder="Enter email"
-            />
-          </Row>
-          <Row>
-            <Form.Control
-              type="password"
-              name="password"
-              value={formState.password}
-              onChange={handleChange}
-              placeholder="Enter password"
-            />
-          </Row>
-        </Col>
+      <Container className="darkbackground w100 container">
+        <Container className="p-3 my-5 d-flex flex-column w-50">
+          <Col>
+            <Row>
+              <Form.Control
+                className="formInput"
+                type="email"
+                name="email"
+                value={formState.email}
+                onChange={handleChange}
+                placeholder="Enter email"
+              />
+            </Row>
+            <Row>
+              <Form.Control
+                className="formInput"
+                type="password"
+                name="password"
+                value={formState.password}
+                onChange={handleChange}
+                placeholder="Enter password"
+              />
+            </Row>
+          </Col>
 
-        <div className="d-flex justify-content-between mx-3 mb-4">
-          <Form.Check type="checkbox" label="Check me out" />
-          <a href="!#">Forgot password?</a>
-        </div>
+          <div className="d-flex justify-content-between mx-3 mb-4">
+            <Form.Check type="checkbox" label="Check me out" />
+            <a href="!#">Forgot password?</a>
+          </div>
 
-        <Button onClick={handleFormSubmit} className="mb-4">
-          Sign in
-        </Button>
+          <Button
+            onClick={handleFormSubmit}
+            style={{ backgroundColor: "#337ca0" }}
+            className="buttonBlue"
+            variant="outline-dark"
+          >
+            Sign in
+          </Button>
+        </Container>
       </Container>
     </>
   );

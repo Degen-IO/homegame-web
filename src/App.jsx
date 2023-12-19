@@ -7,10 +7,6 @@ import {
   gql,
 } from "@apollo/client";
 import TestLogin from "./components/testLogin.jsx";
-import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../src/utils/mutations.js";
-
-import auth from "./utils/auth.js";
 
 const client = new ApolloClient({
   request: (operation) => {
