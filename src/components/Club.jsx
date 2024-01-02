@@ -3,8 +3,8 @@ import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_USERS_POKERGROUPS } from "../graphql/queries";
 // User info
-const user = Auth.getUser()?.data;
-const { userId, email, name } = user || null;
+const user = Auth.getUser()?.data || {}; // Fallback to empty object
+const { userId, email, name } = user;
 
 // Gets info for clubs -- TO DO: different component that makes cards/buttons?
 function ClubInfo(userId) {
@@ -27,24 +27,28 @@ function ClubInfo(userId) {
 }
 
 export const Club = () => {
-  return (
-    <div className="container">
-      <div>
-        <h1>User info:</h1>
-        <p>User ID : {userId}</p>
-        <p>Email : {email}</p>
-        <p>name: {name}</p>
+  if (userId) {
+    return (
+      <div className="container">
+        <div>
+          <h1>User info:</h1>
+          <p>User ID : {userId}</p>
+          <p>Email : {email}</p>
+          <p>Name: {name}</p>
+        </div>
+        {/* Club Info */}
+        <div>
+          <h1> Club Info:</h1>
+          {ClubInfo(userId)}
+        </div>
+        <h1> Games info :</h1>
+        <ul>
+          <li>Game 1</li>
+          <li>Game 2</li>
+        </ul>
       </div>
-      {/* Club Info */}
-      <div>
-        <h1> Club Info:</h1>
-        {ClubInfo(userId)}
-      </div>
-      <h1> Games info :</h1>
-      <ul>
-        <li>Game 1</li>
-        <li>Game 2</li>
-      </ul>
-    </div>
-  );
+    );
+  } else {
+    return <p>An error has occurred</p>;
+  }
 };
