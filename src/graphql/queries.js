@@ -10,3 +10,13 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_USERS_POKERGROUPS = gql`
+  query Query($userId: ID!) {
+    pokerGroups(userId: $userId) {
+      groupId
+      joinPassword
+      name
+    }
+  }
+`;
