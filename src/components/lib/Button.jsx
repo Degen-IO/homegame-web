@@ -32,8 +32,6 @@ export function CustomButton({
         borderRadius: "10px",
         alignItems: "center",
         justifyContent: "center",
-        paddingHorizontal: paddingHorizontal,
-        paddingVertical: paddingVertical,
       }}
     >
       {iconAlignment === "left" ? <>{icon}</> : <></>}

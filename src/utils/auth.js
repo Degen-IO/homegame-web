@@ -2,7 +2,11 @@ import { jwtDecode } from "jwt-decode";
 
 class AuthService {
   getUser() {
-    return jwtDecode(this.getToken());
+    const token = this.getToken();
+    if (typeof token === "string" && token.trim() !== "") {
+      return jwtDecode(token);
+    }
+    return null;
   }
 
   loggedIn() {
@@ -29,8 +33,7 @@ class AuthService {
 
   login(idToken) {
     localStorage.setItem("id_token", idToken);
-    // TO DO : REMOVE THIS!
-    // window.location.assign("/");
+    window.location.assign("/");
   }
 
   logout() {

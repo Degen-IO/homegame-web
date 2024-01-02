@@ -7,6 +7,7 @@ import {
   gql,
 } from "@apollo/client";
 import TestLogin from "./components/testLogin.jsx";
+import { Home } from "./page/Home.jsx";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -25,7 +26,7 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
-        <TestLogin />
+        <Home />
       </ApolloProvider>
     </>
   );

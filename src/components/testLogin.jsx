@@ -7,9 +7,10 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
+import { LOGIN_USER } from "../graphql/mutations";
 
 import Auth from "../utils/auth";
+import { CustomButton } from "./lib/Button";
 
 function TestLogin() {
   const [formState, setFormState] = useState({ email: "", password: "" }); // store email and password in formState
@@ -51,8 +52,22 @@ function TestLogin() {
       password: "",
     });
   };
+
   return (
     <>
+      <Container>
+        {/* <CustomButton
+          onClick={() => console.log("Hi")}
+          text="Click Me!"
+          textStyle={{ fontWeight: "normal" }}
+          backgroundColor="secondary"
+          // icon={<YourIconComponent />} // Uncomment and replace with your icon component if needed
+          iconAlignment="right"
+          variant="primary"
+          size="large"
+          disabled={false}
+        /> */}
+      </Container>
       <Container className="darkbackground w100 container">
         <Container className="p-3 my-5 d-flex flex-column w-50">
           <Col>
