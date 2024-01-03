@@ -6,8 +6,10 @@ import {
   ApolloProvider,
   gql,
 } from "@apollo/client";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import TestLogin from "./components/testLogin.jsx";
-import { Home } from "./page/Home.jsx";
+import { Home, Clubdetail } from "./page";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -24,11 +26,15 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <>
-      <ApolloProvider client={client}>
-        <Home />
-      </ApolloProvider>
-    </>
+    <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/club/:clubId" element={<Clubdetail />} />
+          {/* Remove the standalone Home component */}
+        </Routes>
+      </Router>
+    </ApolloProvider>
   );
 }
 
