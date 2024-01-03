@@ -1,26 +1,33 @@
 import { useState } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import { Home, Clubdetail } from "./page";
+
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  gql,
+  HttpLink,
+  ApolloLink,
 } from "@apollo/client";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import TestLogin from "./components/testLogin.jsx";
-import { Home, Clubdetail } from "./page";
+const httpLink = new HttpLink({
+  uri: "http://localhost:3666/graphql",
+});
+
+const authLink = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem("id_token");
+  operation.setContext({
+    headers: {
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  });
+  return forward(operation);
+});
 
 const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem("id_token");
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    });
-  },
-  uri: "http://localhost:3666/graphql",
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

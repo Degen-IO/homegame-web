@@ -20,3 +20,29 @@ export const QUERY_USERS_POKERGROUPS = gql`
     }
   }
 `;
+export const MEMBERS_OF_GROUP = gql`
+  query Query($groupId: ID!) {
+    membersOfGroup(groupId: $groupId) {
+      chip_stack
+      email
+      name
+      userId
+    }
+  }
+`;
+
+export const CASH_GAMES_IN_GROUP = gql`
+  query Query($groupId: ID!) {
+    cashGamesInGroup(groupId: $groupId) {
+      blindsBig
+      blindsSmall
+      duration
+      gameId
+      name
+      playersPerTable
+      startDateTime
+      startingChips
+      status
+    }
+  }
+`;
