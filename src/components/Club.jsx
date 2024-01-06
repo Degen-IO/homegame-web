@@ -8,7 +8,7 @@ const user = Auth.getUser()?.data || {}; // Fallback to empty object
 const { userId, email, name } = user;
 
 // Gets info for clubs -- TO DO: different component that makes cards/buttons?
-function ClubInfo(userId) {
+export function ClubInfo(userId) {
   const { loading, error, data } = useQuery(QUERY_USERS_POKERGROUPS, {
     variables: { userId },
   });

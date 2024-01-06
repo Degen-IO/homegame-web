@@ -1,8 +1,7 @@
 import React from "react";
-import TestLogin from "../components/testLogin";
+import { TestLogin, ClubInfo } from "../components";
 import Auth from "../utils/auth";
 import Button from "react-bootstrap/Button";
-import { Club } from "../components/Club";
 
 export const Home = () => {
   let user = Auth.getUser();
@@ -15,7 +14,7 @@ export const Home = () => {
           <p>Already logged in! Welcome {user ? user.data.name : ""}</p>
           {/* Render components or content for logged-in users */}
           {/* Example: <UserProfile /> or <Dashboard /> */}
-          <Club />
+          <ClubInfo />
           <Button
             onClick={() => {
               Auth.logout();

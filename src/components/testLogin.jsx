@@ -12,7 +12,7 @@ import { LOGIN_USER } from "../graphql/mutations";
 import Auth from "../utils/auth";
 import { CustomButton } from "./lib/Button";
 
-function TestLogin() {
+export const TestLogin = () => {
   const [formState, setFormState] = useState({ email: "", password: "" }); // store email and password in formState
   //login function, destructure error and data from payload
   const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -110,6 +110,4 @@ function TestLogin() {
       </Container>
     </>
   );
-}
-
-export default TestLogin;
+};
