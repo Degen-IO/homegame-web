@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 export const Home = () => {
   let user = Auth.getUser();
   const isLoggedIn = Auth.loggedIn();
+
   return (
     <>
       {/* Login Check */}
@@ -14,7 +15,7 @@ export const Home = () => {
           <p>Already logged in! Welcome {user ? user.data.name : ""}</p>
           {/* Render components or content for logged-in users */}
           {/* Example: <UserProfile /> or <Dashboard /> */}
-          <ClubInfo />
+          <ClubInfo userId={user.data.userId} />
           <Button
             onClick={() => {
               Auth.logout();

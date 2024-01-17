@@ -11,7 +11,6 @@ import { LOGIN_USER } from "../graphql/mutations";
 
 import Auth from "../utils/auth";
 import { CustomButton } from "./lib/Button";
-
 export const TestLogin = () => {
   const [formState, setFormState] = useState({ email: "", password: "" }); // store email and password in formState
   //login function, destructure error and data from payload
@@ -32,7 +31,6 @@ export const TestLogin = () => {
   // submit form (submit button)
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     // lets try to login, call the login mutation, pass in formState (state variable holding variables for email & password)
     try {
