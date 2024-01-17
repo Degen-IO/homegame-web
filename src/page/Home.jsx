@@ -1,5 +1,5 @@
 import React from "react";
-import { TestLogin, ClubInfo, CreateClub } from "../components";
+import { TestLogin, ClubInfo, CreateClub, Register } from "../components";
 import Auth from "../utils/auth";
 import Button from "react-bootstrap/Button";
 import { RequestToJoinClub } from "../components/RequestToJoinClub";
@@ -10,10 +10,14 @@ export const Home = () => {
 
   return (
     <>
+      <h1>Welcome to HomeGame</h1>
       {/* Login Check */}
       {isLoggedIn ? (
         <>
-          <p>Already logged in! Welcome {user ? user.data.name : ""}</p>
+          <p>
+            Just a logger: Already logged in! Welcome{" "}
+            {user ? user.data.name : ""}
+          </p>
           {/* Render components or content for logged-in users */}
           {/* Example: <UserProfile /> or <Dashboard /> */}
           <ClubInfo userId={user.data.userId} />
@@ -32,8 +36,10 @@ export const Home = () => {
         </>
       ) : (
         <>
-          <p>NOT logged in!</p>
+          <p>Just a logger: NOT logged in!</p>
           <TestLogin />
+          <p>Or sign up below:</p>
+          <Register />
         </>
       )}
     </>

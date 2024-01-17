@@ -33,3 +33,17 @@ export const REQUEST_TO_JOIN_GROUP = gql`
     }
   }
 `;
+
+export const ADD_USER = gql`
+  mutation Mutation($name: String!, $email: String!, $password: String!) {
+    addUser(name: $name, email: $email, password: $password) {
+      token
+      user {
+        chip_stack
+        email
+        name
+        userId
+      }
+    }
+  }
+`;
