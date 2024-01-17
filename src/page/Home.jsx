@@ -1,7 +1,8 @@
 import React from "react";
-import { TestLogin, ClubInfo } from "../components";
+import { TestLogin, ClubInfo, CreateClub } from "../components";
 import Auth from "../utils/auth";
 import Button from "react-bootstrap/Button";
+import { RequestToJoinClub } from "../components/RequestToJoinClub";
 
 export const Home = () => {
   let user = Auth.getUser();
@@ -16,6 +17,8 @@ export const Home = () => {
           {/* Render components or content for logged-in users */}
           {/* Example: <UserProfile /> or <Dashboard /> */}
           <ClubInfo userId={user.data.userId} />
+          <CreateClub />
+          <RequestToJoinClub />
           <Button
             onClick={() => {
               Auth.logout();

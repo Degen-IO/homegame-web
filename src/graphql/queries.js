@@ -46,3 +46,32 @@ export const CASH_GAMES_IN_GROUP = gql`
     }
   }
 `;
+
+export const TOURNAMENT_GAMES_IN_GROUP = gql`
+  query Query($groupId: ID!) {
+    tournamentGamesInGroup(groupId: $groupId) {
+      addOn
+      gameId
+      gameSpeed
+      lateRegistrationDuration
+      name
+      numberOfRebuys
+      playersPerTable
+      rebuyPeriod
+      startDateTime
+      startingChips
+      status
+    }
+  }
+`;
+
+export const QUERY_PENDING_MEMBERS = gql`
+  query Query($groupId: ID!) {
+    pendingMembers(groupId: $groupId) {
+      chip_stack
+      email
+      name
+      userId
+    }
+  }
+`;

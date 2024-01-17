@@ -13,3 +13,23 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const CREATE_POKER_GROUP = gql`
+  mutation Mutation($name: String!, $joinPassword: String!) {
+    createPokerGroup(name: $name, joinPassword: $joinPassword) {
+      groupId
+      joinPassword
+      name
+    }
+  }
+`;
+
+export const REQUEST_TO_JOIN_GROUP = gql`
+  mutation RequestToJoinGroup($groupId: ID!, $joinPassword: String!) {
+    requestToJoinGroup(groupId: $groupId, joinPassword: $joinPassword) {
+      groupId
+      joinPassword
+      name
+    }
+  }
+`;
