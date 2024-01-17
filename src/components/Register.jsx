@@ -7,10 +7,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 import { useMutation } from "@apollo/client";
-import { ADD_USER, LOGIN_USER } from "../graphql/mutations";
+import { ADD_USER } from "../graphql/mutations";
 
 import Auth from "../utils/auth";
-import { CustomButton } from "./lib/Button";
 export const Register = () => {
   const [formState, setFormState] = useState({
     name: "",
@@ -45,7 +44,7 @@ export const Register = () => {
 
       Auth.login(data.addUser.token);
     } catch (e) {
-      setErrorMessage("Error: " + e.message);
+      setErrorMessage("Error: " + e.message + error);
       console.error(e);
     }
 
