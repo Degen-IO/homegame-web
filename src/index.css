@@ -13,10 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  height: 100vh;
-}
-
 .formInput {
   margin-top: 10px;
   margin-bottom: 10px;
