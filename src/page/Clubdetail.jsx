@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import {
@@ -8,9 +8,15 @@ import {
   TOURNAMENT_GAMES_IN_GROUP,
   QUERY_PENDING_MEMBERS,
 } from "../graphql/queries";
+import { Gamedetail } from "./Gamedetail";
 
 export const Clubdetail = () => {
   const { clubId } = useParams();
+  const navigate = useNavigate();
+
+  const handleNavigate = (gameId, typeName) => {
+    navigate(`/club/${clubId}/${typeName}/${gameId}`);
+  };
 
   // Use clubId to fetch club details or perform other actions
   const {
@@ -45,15 +51,13 @@ export const Clubdetail = () => {
     variables: { groupId: clubId },
   });
 
-  console.log(dataPendingMembers?.pendingMembers);
-
   if (loadingMembers || loadingCashGames) return <p>Loading...</p>;
   if (errorMembers) return <p>Error loading members: {errorMembers.message}</p>;
   if (errorCashGames)
     return <p>Error loading games: {errorCashGames.message}</p>;
 
-  //   console.log(dataCashGames);
-  //   console.log(dataTournamentGames);
+  console.log(dataCashGames);
+  console.log(dataTournamentGames);
   return (
     <div>
       <Link to={`/`}>
@@ -61,6 +65,7 @@ export const Clubdetail = () => {
       </Link>
       <h1>Club Detail</h1>
       <p>Club ID: {clubId}</p>
+      <Link to={`/${clubId}/create-game`}>Create New Game</Link>
       <div>
         <h2>Members:</h2>
         {dataMembers?.membersOfGroup.map((member) => (
@@ -79,7 +84,11 @@ export const Clubdetail = () => {
         {dataCashGames?.cashGamesInGroup.length > 0 ? (
           dataCashGames.cashGamesInGroup.map((game) => (
             <div key={game.gameId}>
-              <h3>{game.name}</h3>
+              <button
+                onClick={() => handleNavigate(game.gameId, game.__typename)}
+              >
+                {game.name}
+              </button>
               {/* Display other game details */}
             </div>
           ))
@@ -90,7 +99,11 @@ export const Clubdetail = () => {
         {dataTournamentGames?.tournamentGamesInGroup.length > 0 ? (
           dataTournamentGames.tournamentGamesInGroup.map((game) => (
             <div key={game.gameId}>
-              <h3>{game.name}</h3>
+              <button
+                onClick={() => handleNavigate(game.gameId, game.__typename)}
+              >
+                {game.name}
+              </button>
               {/* Display other game details */}
             </div>
           ))
@@ -102,14 +115,12 @@ export const Clubdetail = () => {
         <h2>Pending Members:</h2>
         {dataPendingMembers?.pendingMembers?.length > 0 ? (
           dataPendingMembers.pendingMembers.map((member) => (
-            //   TO DO -- Use the Pending Members component to add/deny members to groups if admin.
             <div key={member.userId}>
               <h3>{member.name}</h3>
-              {/* Display other game details */}
             </div>
           ))
         ) : (
-          <p>No tournament games</p> // This will be rendered if there are no cash games
+          <p>No pending members</p>
         )}
       </div>
     </div>

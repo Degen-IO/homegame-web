@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Home, Clubdetail } from "./page";
+import { Home, Clubdetail, Gamedetail, CreateGame } from "./page";
 
 import {
   ApolloClient,
@@ -38,6 +38,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/club/:clubId" element={<Clubdetail />} />
+          <Route
+            path="/club/:clubId/:typeName/:gameId"
+            element={<Gamedetail />}
+          />
+          <Route exact path="/:groupId/create-game" element={<CreateGame />} />
+
           {/* Remove the standalone Home component */}
         </Routes>
       </Router>
