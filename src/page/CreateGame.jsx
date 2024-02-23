@@ -65,9 +65,21 @@ export const CreateGame = () => {
     };
 
     if (gameType === "tournament") {
-      await createTournamentGame({ variables });
+      createTournamentGame({ variables })
+        .then(({ data }) => {
+          console.log("You created a tournament game", data.createTournamentGame);
+        })
+        .catch((error) => {
+          console.error("Error creating tournament game", error);
+        });
     } else {
-      await createCashGame({ variables });
+      createCashGame({ variables })
+        .then(({ data }) => {
+          console.log("You created a cash game", data.createCashGame);
+        })
+        .catch((error) => {
+          console.error("Error creating cash game", error);
+        });
     }
   };
 
