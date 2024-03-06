@@ -84,9 +84,7 @@ export const Clubdetail = () => {
         {dataCashGames?.cashGamesInGroup.length > 0 ? (
           dataCashGames.cashGamesInGroup.map((game) => (
             <div key={game.gameId}>
-              <button
-                onClick={() => handleNavigate(game.gameId, game.__typename)}
-              >
+              <button onClick={() => handleNavigate(game.gameId, "cash")}>
                 {game.name}
               </button>
               {/* Display other game details */}
@@ -99,9 +97,7 @@ export const Clubdetail = () => {
         {dataTournamentGames?.tournamentGamesInGroup.length > 0 ? (
           dataTournamentGames.tournamentGamesInGroup.map((game) => (
             <div key={game.gameId}>
-              <button
-                onClick={() => handleNavigate(game.gameId, game.__typename)}
-              >
+              <button onClick={() => handleNavigate(game.gameId, "tournament")}>
                 {game.name}
               </button>
               {/* Display other game details */}

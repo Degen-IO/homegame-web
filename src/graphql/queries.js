@@ -75,3 +75,38 @@ export const QUERY_PENDING_MEMBERS = gql`
     }
   }
 `;
+
+export const QUERY_GAME = gql`
+  query Query($gameId: ID!, $gameType: String!) {
+    game(gameId: $gameId, gameType: $gameType) {
+      gameId
+      gameType
+      name
+      status
+      startDateTime
+      playersPerTable
+      startingChips
+      blindsSmall
+      blindsBig
+      duration
+      numberOfRebuys
+      rebuyPeriod
+      addOn
+      gameSpeed
+      lateRegistrationDuration
+    }
+  }
+`;
+
+export const QUERY_PLAYERS_IN_GAME = gql`
+  query PlayersInGame($gameId: ID!, $gameType: String!) {
+    playersInGame(gameId: $gameId, gameType: $gameType) {
+      playerId
+      userId
+      gameId
+      gameType
+      tableId
+      seatNumber
+    }
+  }
+`;
