@@ -120,3 +120,22 @@ export const CREATE_CASH_GAME = gql`
     }
   }
 `;
+
+export const JOIN_GAME = gql`
+  mutation JoinGame($gameId: ID!, $gameType: GameType!) {
+    joinGame(gameId: $gameId, gameType: $gameType) {
+      playerId
+      userId
+      gameId
+      gameType
+      tableId
+      seatNumber
+    }
+  }
+`;
+
+export const LEAVE_GAME = gql`
+  mutation LeaveGame($gameId: ID!, $gameType: GameType!) {
+    leaveGame(gameId: $gameId, gameType: $gameType)
+  }
+`;
