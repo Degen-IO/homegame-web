@@ -7,7 +7,7 @@ import { QUERY_GAME, QUERY_PLAYERS_IN_GAME } from "../graphql/queries";
 import { JOIN_GAME, LEAVE_GAME } from "../graphql/mutations";
 export const Gamedetail = () => {
   const { gameId, typeName } = useParams();
-  console.log("----------", gameId, typeName);
+  console.log("----------gameId and TypeName", gameId, typeName);
 
   //Buttons for join/leave game
   const [joinGame] = useMutation(JOIN_GAME);
@@ -21,6 +21,9 @@ export const Gamedetail = () => {
       alert(`Failed to join the game: ${error.message}`);
     }
   };
+
+  console.log("gameId:", gameId, "type", typeof gameId);
+  console.log("typeName:", typeName, "type", typeof typeName);
 
   const handleLeaveGame = async () => {
     try {
@@ -50,11 +53,18 @@ export const Gamedetail = () => {
   });
 
   if (gameLoading || playersLoading) return <p>Loading...</p>;
-  if (gameError || playersError) return <p>Error :</p>;
+  if (gameError) {
+    console.error("Error fetching game details:", gameError);
+  }
+  if (playersError) {
+    console.error("Error fetching player details:", playersError);
+  }
 
   const game = gameData.game;
-  console.log("----------------------", game);
+  console.log("----------------------GAME:", game);
+  console.log("----------------------PLAYERS DATA:", playersData);
   const players = playersData.playersInGame;
+  console.log("----------------------PLAYERS:", players);
 
   // You can use gameId and typeName here to fetch or display specific game details
   return (

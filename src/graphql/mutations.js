@@ -49,7 +49,7 @@ export const ADD_USER = gql`
 `;
 
 export const CREATE_TOURNAMENT_GAME = gql`
-  mutation Mutation(
+  mutation CreateTournamentGame(
     $groupId: ID!
     $name: String!
     $startDateTime: String!
@@ -73,7 +73,7 @@ export const CREATE_TOURNAMENT_GAME = gql`
       gameSpeed: $gameSpeed
       lateRegistrationDuration: $lateRegistrationDuration
     ) {
-      gameId
+      tournamentId
       name
       status
       startDateTime
@@ -108,7 +108,7 @@ export const CREATE_CASH_GAME = gql`
       blindsBig: $blindsBig
       duration: $duration
     ) {
-      gameId
+      cashId
       name
       status
       startDateTime
@@ -126,7 +126,8 @@ export const JOIN_GAME = gql`
     joinGame(gameId: $gameId, gameType: $gameType) {
       playerId
       userId
-      gameId
+      cashId
+      tournamentId
       gameType
       tableId
       seatNumber
