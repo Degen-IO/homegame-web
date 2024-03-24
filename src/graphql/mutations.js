@@ -136,7 +136,15 @@ export const JOIN_GAME = gql`
 `;
 
 export const LEAVE_GAME = gql`
-  mutation LeaveGame($gameId: ID!, $gameType: GameType!) {
-    leaveGame(gameId: $gameId, gameType: $gameType)
+  mutation Mutation($gameId: ID!, $gameType: GameType!) {
+    leaveGame(gameId: $gameId, gameType: $gameType) {
+      playerId
+      userId
+      cashId
+      tournamentId
+      gameType
+      tableId
+      seatNumber
+    }
   }
 `;
