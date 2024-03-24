@@ -49,7 +49,7 @@ export const ADD_USER = gql`
 `;
 
 export const CREATE_TOURNAMENT_GAME = gql`
-  mutation Mutation(
+  mutation CreateTournamentGame(
     $groupId: ID!
     $name: String!
     $startDateTime: String!
@@ -73,7 +73,7 @@ export const CREATE_TOURNAMENT_GAME = gql`
       gameSpeed: $gameSpeed
       lateRegistrationDuration: $lateRegistrationDuration
     ) {
-      gameId
+      tournamentId
       name
       status
       startDateTime
@@ -108,7 +108,7 @@ export const CREATE_CASH_GAME = gql`
       blindsBig: $blindsBig
       duration: $duration
     ) {
-      gameId
+      cashId
       name
       status
       startDateTime
@@ -117,6 +117,34 @@ export const CREATE_CASH_GAME = gql`
       blindsSmall
       blindsBig
       duration
+    }
+  }
+`;
+
+export const JOIN_GAME = gql`
+  mutation JoinGame($gameId: ID!, $gameType: GameType!) {
+    joinGame(gameId: $gameId, gameType: $gameType) {
+      playerId
+      userId
+      cashId
+      tournamentId
+      gameType
+      tableId
+      seatNumber
+    }
+  }
+`;
+
+export const LEAVE_GAME = gql`
+  mutation Mutation($gameId: ID!, $gameType: GameType!) {
+    leaveGame(gameId: $gameId, gameType: $gameType) {
+      playerId
+      userId
+      cashId
+      tournamentId
+      gameType
+      tableId
+      seatNumber
     }
   }
 `;

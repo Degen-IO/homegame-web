@@ -37,7 +37,7 @@ export const CASH_GAMES_IN_GROUP = gql`
       blindsBig
       blindsSmall
       duration
-      gameId
+      cashId
       name
       playersPerTable
       startDateTime
@@ -51,7 +51,7 @@ export const TOURNAMENT_GAMES_IN_GROUP = gql`
   query Query($groupId: ID!) {
     tournamentGamesInGroup(groupId: $groupId) {
       addOn
-      gameId
+      tournamentId
       gameSpeed
       lateRegistrationDuration
       name
@@ -72,6 +72,44 @@ export const QUERY_PENDING_MEMBERS = gql`
       email
       name
       userId
+    }
+  }
+`;
+
+export const QUERY_GAME = gql`
+  query Query($gameId: ID!, $gameType: GameType!) {
+    game(gameId: $gameId, gameType: $gameType) {
+      gameId
+      cashId
+      tournamentId
+      gameType
+      name
+      status
+      startDateTime
+      playersPerTable
+      startingChips
+      blindsSmall
+      blindsBig
+      duration
+      numberOfRebuys
+      rebuyPeriod
+      addOn
+      gameSpeed
+      lateRegistrationDuration
+    }
+  }
+`;
+
+export const QUERY_PLAYERS_IN_GAME = gql`
+  query Query($gameId: ID!, $gameType: GameType!) {
+    playersInGame(gameId: $gameId, gameType: $gameType) {
+      playerId
+      userId
+      cashId
+      tournamentId
+      gameType
+      tableId
+      seatNumber
     }
   }
 `;

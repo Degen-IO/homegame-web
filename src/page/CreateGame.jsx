@@ -63,11 +63,14 @@ export const CreateGame = () => {
             duration: formData.duration,
           }),
     };
-
+    
     if (gameType === "tournament") {
       createTournamentGame({ variables })
         .then(({ data }) => {
-          console.log("You created a tournament game", data.createTournamentGame);
+          console.log(
+            "You created a tournament game",
+            data.createTournamentGame
+          );
         })
         .catch((error) => {
           console.error("Error creating tournament game", error);
