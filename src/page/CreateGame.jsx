@@ -63,7 +63,7 @@ export const CreateGame = () => {
             duration: formData.duration,
           }),
     };
-    console.log("---------variables", variables);
+    
     if (gameType === "tournament") {
       createTournamentGame({ variables })
         .then(({ data }) => {
